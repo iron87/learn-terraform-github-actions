@@ -14,10 +14,10 @@ terraform {
   backend "remote" {
     organization = "for-demo-purpose-only"
 
-    #workspaces {
-    #name = "aws-github-actions"
-    #prefix = "aws-"
-    #}
+    workspaces {
+       #name = "aws-github-actions"
+       prefix = "aws-"
+     }
   }
 }
 

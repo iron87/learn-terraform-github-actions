@@ -9,7 +9,7 @@ on:
 jobs:
   terraform:
     env: 
-      TF_WORKSPACE: aws-github-actions
+      TF_WS: aws-github-actions
 
     name: "Terraform"
     runs-on: ubuntu-latest
@@ -27,10 +27,15 @@ jobs:
         id: fmt
         run: terraform fmt -check
 
+
+      - name: Terraform select
+        id: selectws
+        run: terraform workspace select $TF_WS || terraform workspace new $TF_WS
+       
       - name: Terraform Init
         id: init
-        run: terraform init      
-       
+        run: terraform init
+
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
