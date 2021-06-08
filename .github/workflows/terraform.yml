@@ -8,6 +8,9 @@ on:
 
 jobs:
   terraform:
+    env: 
+      TF_WS: aws-github-actions
+
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
@@ -27,6 +30,13 @@ jobs:
       - name: Terraform Init
         id: init
         run: terraform init
+
+
+      - name: Terraform select
+        id: selectws
+        run: terraform workspace select $TF_WS || terraform workspace new $TF_WS
+       
+     
 
       - name: Terraform Plan
         id: plan

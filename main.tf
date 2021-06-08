@@ -15,7 +15,8 @@ terraform {
     organization = "for-demo-purpose-only"
 
     workspaces {
-      name = "aws-github-actions"
+      #name = "aws-github-actions"
+      prefix = "aws-"
     }
   }
 }
